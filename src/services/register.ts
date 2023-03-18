@@ -9,12 +9,18 @@ export class RegisterUserService {
    async create(user: userSchemaType) {
       const password_hash = await hash(user.password, 6)
 
-      const userWithSameEmail = await this.userRepository.findByEmail(user.email)
+      const userWithSameEmail = await this.userRepository.findByEmail(
+         user.email
+      )
 
       if (userWithSameEmail) {
          throw new UserAlreadyExistsError()
       }
 
-      return this.userRepository.create({ name: user.name, email: user.email, password_hash})
+      return this.userRepository.create({
+         name: user.name,
+         email: user.email,
+         password_hash,
+      })
    }
 }

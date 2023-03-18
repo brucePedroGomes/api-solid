@@ -14,9 +14,9 @@ app.setErrorHandler((error, request, reply) => {
          .send({ message: 'validation error', issues: error.format() })
    }
 
-   if(env.NODE_ENV !== 'production') {
+   if (env.NODE_ENV !== 'production') {
       console.error(error)
-   } 
+   }
 
    // @ TODO: external log to production
 
